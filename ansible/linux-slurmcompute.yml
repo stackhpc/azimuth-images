@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+  become: yes
+  roles:
+    - jupyter-repo2docker

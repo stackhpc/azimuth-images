@@ -1,0 +1,9 @@
+openhpc_slurm_packages:
+  - ohpc-base-compute
+  - ohpc-slurm-client
+  - munge
+openhpc_extra_packages:
+  - lmod-ohpc
+  - slurm-libpmi-ohpc # to allow intel mpi to work properly
+  - ohpc-gnu9-openmpi4-perf-tools # for hpctests
+  - openblas-gnu9-ohpc # for hpctests (HPL)

@@ -1,0 +1,23 @@
+- name: Install ohpc-release package
+  yum:
+    name: "http://repos.openhpc.community/OpenHPC/2/CentOS_8/x86_64/ohpc-release-2-1.el8.x86_64.rpm"
+    state: present
+    disable_gpg_check: True
+
+- name: Enable PowerTools repo
+  community.general.ini_file:
+    path: /etc/yum.repos.d/CentOS-PowerTools.repo 8.3
+    create: false
+    option: enabled
+    value: 1
+
+- name: Install packages
+  ansible.builtin.dnf:
+    name: "{{ openhpc_slurm_packages + openhpc_extra_packages + }}"
+
+# - munge key
+# -  JobComp logfile exists?
+# - name: Set slurmctld location for configless operation
+#- name: Ensure Slurm service state
+# make sure munge and slurm wait for cloud-init
+

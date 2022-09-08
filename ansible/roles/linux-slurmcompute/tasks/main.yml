@@ -1,0 +1,25 @@
+- name: Get builder commit
+  shell:
+    cmd: git describe --all --long --dirty
+  register: builder_commit
+  delegate_to: localhost
+
+- name: Write builder commit to /var/lib/misc/build.txt
+  copy:
+    dest: /var/lib/misc/build.txt
+    content: "{{ builder_commit.stdout }}"
+
+- include_role:
+    name: linux-ansible-init
+    
+- import_tasks: bootstrap.yml
+#- import_tasks: reimage.yml #  TODO: if required to support slurm-driven rebuild from compute nodes
+- import_tasks: slurm.yml
+- import_tasks: ood_vnc.yml
+- import_tasks: monitoring.yml
+
+- name: Delete /etc/resolv.conf
+  # required as if cloud-init (rather than network manager) controls this on next boot it won't be entirely overrwritten
+  file:
+    path: /etc/resolv.conf
+    state: absent
