@@ -5,10 +5,10 @@ After=network-online.target
 ConditionPathExists=!/var/lib/ansible-init.done
 
 [Service]
-Type=oneshot
+Type=simple
 RemainAfterExit=true
 ExecStart=/usr/bin/ansible-init
-ExecStartPost=touch /var/lib/ansible-init.done
+ExecStartPost=/usr/bin/touch /var/lib/ansible-init.done
 Restart=on-failure
 RestartSec=10
 StandardOutput=journal+console
