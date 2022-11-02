@@ -4,11 +4,9 @@ set -exo pipefail
 
 # This script executes the playbooks from /etc/ansible-init/playbooks in lexicographical order
 
-# Make sure we operate in our virtual environment
-source {{ ansible_init_venv_path }}/bin/activate
 
 for file in $(find /etc/ansible-init/playbooks -maxdepth 1 -type f -name '*.yml' | sort -n); do
-    ansible-playbook --connection local --inventory 127.0.0.1, "$file"
+# Make sure we operate in our virtual environment
+{{ ansible_init_venv_path }}/ansible-playbook --connection local --inventory 127.0.0.1, "$file"
 done
 
-deactivate

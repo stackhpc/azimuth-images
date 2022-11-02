@@ -26,8 +26,8 @@
     mode: +x
 
 - name: Install systemd unit for ansible-init
-  copy:
-    src: ansible-init.service
+  ansible.builtin.template:
+    src: ansible-init.service.j2
     dest: /etc/systemd/system/ansible-init.service
 
 - name: Ensure ansible-init service is enabled

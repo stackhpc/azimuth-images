@@ -1,2 +1,2 @@
 ---
-ansible_init_venv_path: "/home/ipuuser/tools"
+ansible_init_venv_path: "/opt/ansible"
