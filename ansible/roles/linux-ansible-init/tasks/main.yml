@@ -35,4 +35,3 @@
     daemon_reload: yes
     name: ansible-init.service
     enabled: yes
-  ignore_errors: yes
