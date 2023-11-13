@@ -5,10 +5,14 @@ After=network-online.target
 ConditionPathExists=!/var/lib/ansible-init.done
 
 [Service]
+{% if ansible_distribution_version == 18.04 %}
+Type=simple
+{% else %}
 Type=oneshot
+{% endif %}
 RemainAfterExit=true
 ExecStart=/usr/bin/ansible-init
-ExecStartPost=touch /var/lib/ansible-init.done
+ExecStartPost=/usr/bin/touch /var/lib/ansible-init.done
 Restart=on-failure
 RestartSec=10
 StandardOutput=journal+console

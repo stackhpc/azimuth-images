@@ -9,6 +9,7 @@
   pip:
     name: pip
     state: latest
+    virtualenv: "{{ ansible_init_venv_path }}"
 
 - name: Install Ansible
   pip:
@@ -16,16 +17,17 @@
       - ansible
       - jmespath
     state: latest
+    virtualenv: "{{ ansible_init_venv_path }}"
 
 - name: Install ansible-init script
-  copy:
-    src: ansible-init.sh
+  ansible.builtin.template:
+    src: ansible-init.sh.j2
     dest: /usr/bin/ansible-init
     mode: +x
 
 - name: Install systemd unit for ansible-init
-  copy:
-    src: ansible-init.service
+  ansible.builtin.template:
+    src: ansible-init.service.j2
     dest: /etc/systemd/system/ansible-init.service
 
 - name: Ensure ansible-init service is enabled
