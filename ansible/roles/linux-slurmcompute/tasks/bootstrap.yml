@@ -1,0 +1,32 @@
+- name: Move rocky user
+  ansible.builtin.user:
+    name: rocky
+    home: /var/lib/rocky
+    move_home: true
+    local: true
+  become_method: "sudo"
+  # Need to change working directory otherwise we try to switch back to non-existent directory.
+  become_flags: '-i'
+
+- name: Reset ssh connection to allow user changes to affect ansible_user
+  meta: reset_connection
+
+- name: Set SELinux state and policy
+  ansible.posix.selinux:
+    state: permissive
+    policy: targeted
+
+- name: Update base image packages
+  ansible.builtin.dnf:
+    name: '*'
+    state: 'latest'
+  async: "{{ 30 * 60 }}" # wait for up to 30 minutes
+  poll: 15 # check every 15 seconds
+
+- name: Reboot to cope with package updates and SELinux changes
+  ansible.builtin.reboot:
+    post_reboot_delay: 30
+
+- name: Wait for hosts to be reachable
+  ansible.builtin.wait_for_connection:
+    sleep: 15
