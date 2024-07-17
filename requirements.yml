@@ -21,4 +21,4 @@ roles:
     version: v24.5.0
   - src: https://github.com/stackhpc/ansible-role-linux-ansible-init.git
     name: stackhpc.linux-ansible-init
-    version: v1.0.0
+    version: main
