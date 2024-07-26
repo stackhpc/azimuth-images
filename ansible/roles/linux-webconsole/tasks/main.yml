@@ -52,7 +52,7 @@
   when: desktop_enabled is defined and desktop_enabled
 
 - include_role:
-    name: stackhpc.linux-ansible-init
+    name: azimuth_cloud.image_utils.linux_ansible_init
 
 - include_role: 
     name: linux-podman
