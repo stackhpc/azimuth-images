@@ -1,0 +1,3 @@
+---
+kernel_modules:
+  - ib_ipoib
