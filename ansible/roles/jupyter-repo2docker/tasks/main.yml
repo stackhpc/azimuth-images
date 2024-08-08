@@ -20,7 +20,7 @@
   when: ansible_os_family == "Debian"
 
 - include_role:
-    name: linux-ansible-init
+    name: azimuth_cloud.image_utils.linux_ansible_init
 
 - include_role: 
     name: linux-podman
