@@ -1,6 +1,6 @@
 ---
 grafana_container_image: "grafana/grafana-oss"
-grafana_version: "10.4.1"
+grafana_version: "11.1.3"
 grafana_dashboards:
   - name: node-exporter
     dashboard_id: 1860
