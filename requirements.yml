@@ -13,7 +13,7 @@ collections:
   - name: containers.podman
     version: 1.15.3
   - name: prometheus.prometheus
-    version: 0.16.3
+    version: 0.17.0
 
 roles:
   - src: https://github.com/stackhpc/ansible-role-os-manila-mount.git
