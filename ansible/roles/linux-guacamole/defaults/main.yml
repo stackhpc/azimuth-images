@@ -16,7 +16,7 @@ guacamole_client_image: "{{ guacamole_image_prefix }}/{{ guacamole_client_image_
 
 guacamole_nginx_image_prefix: docker.io
 guacamole_nginx_image_name: nginx
-guacamole_nginx_image_tag: 1.31.5
+guacamole_nginx_image_tag: 1.31.4
 guacamole_nginx_image: "{{ guacamole_nginx_image_prefix }}/{{ guacamole_nginx_image_name }}:{{ guacamole_nginx_image_tag }}"
 
 guacamole_mitm_log_level: notice
